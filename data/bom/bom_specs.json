@@ -1,0 +1,96 @@
+[
+  {
+    "id": "BOM-001",
+    "component": "Cooling Fan Motor",
+    "part_number": "CFM-240-4P",
+    "spec": {
+      "rated_voltage": "240V AC",
+      "rated_current": "0.8A",
+      "speed": "1400 RPM",
+      "power": "180W",
+      "thermal_class": "F (155C max)",
+      "ip_rating": "IP44",
+      "bearing_type": "Double shielded ball bearing",
+      "ambient_temp_max": "40C",
+      "duty_cycle": "Continuous S1"
+    },
+    "known_issues": "Bearing life reduced if operated above 2000 RPM continuously. Dust accumulation on rotor reduces cooling efficiency by up to 30%.",
+    "maintenance": "Lubricate bearings every 8000 hours. Clean rotor fins every 3 months in dusty environments.",
+    "supplier": "ElectroMotion Ltd",
+    "criticality": "HIGH"
+  },
+  {
+    "id": "BOM-002",
+    "component": "Embedded CPU Board",
+    "part_number": "CPU-ARM-M7-V2",
+    "spec": {
+      "processor": "ARM Cortex-M7 @ 216 MHz",
+      "voltage": "3.3V core, 5V IO",
+      "max_junction_temp": "125C",
+      "thermal_resistance_junction_ambient": "42 C/W",
+      "recommended_operating_temp": "-40C to 85C",
+      "heatsink_required": "Yes above 70C ambient",
+      "thermal_paste_spec": "Thermal conductivity >= 4 W/mK",
+      "watchdog_timeout": "2 seconds hardware, 100ms software"
+    },
+    "known_issues": "Thermal paste pump-out observed after 200+ thermal cycles. Junction temperature spikes of 15-20C during interrupt storm. Memory leak in legacy CAN driver v1.x.",
+    "maintenance": "Replace thermal interface material every 18 months. Update CAN driver to v2.x minimum.",
+    "supplier": "EmbedTech Solutions",
+    "criticality": "CRITICAL"
+  },
+  {
+    "id": "BOM-003",
+    "component": "IGBT Power Module",
+    "part_number": "IGBT-600V-50A-Q3",
+    "spec": {
+      "voltage_rating": "600V",
+      "current_rating": "50A continuous",
+      "peak_current": "100A for 1ms",
+      "junction_temp_max": "150C",
+      "thermal_resistance_jc": "0.4 C/W",
+      "switching_frequency_max": "20 kHz",
+      "gate_voltage": "15V on, -8V off",
+      "case": "TO-247"
+    },
+    "known_issues": "Junction temperature exceeds 150C when peak load exceeds 90A without adequate heatsinking. Thermal impedance increases with age. Latch-up risk if gate voltage drops below 12V during switching.",
+    "maintenance": "Replace heatsink thermal interface every 2 years. Monitor forward voltage drop for degradation indicator.",
+    "supplier": "PowerSemi GmbH",
+    "criticality": "CRITICAL"
+  },
+  {
+    "id": "BOM-004",
+    "component": "DC Link Capacitor Bank",
+    "part_number": "CAP-450V-2200UF-BANK",
+    "spec": {
+      "capacitance": "2200 uF per unit, 4 units in parallel",
+      "voltage_rating": "450V DC",
+      "ripple_current": "15A RMS at 85C",
+      "esr": "12 mOhm at 100Hz",
+      "lifetime": "10000 hours at 85C",
+      "temperature_range": "-40C to 105C",
+      "hold_up_time": "20ms at full load"
+    },
+    "known_issues": "Hold-up time drops to 8ms at end of life. ESR increases 3x in cold temperatures below -20C. Ripple current causes additional self-heating.",
+    "maintenance": "Monitor capacitance and ESR annually. Replace when capacitance drops below 80% of nominal.",
+    "supplier": "CapTech International",
+    "criticality": "HIGH"
+  },
+  {
+    "id": "BOM-005",
+    "component": "NTC Temperature Sensor",
+    "part_number": "NTC-10K-B3950",
+    "spec": {
+      "resistance_at_25C": "10 kOhm",
+      "b_constant": "3950 K",
+      "accuracy": "+/- 1C at 25C",
+      "range": "-55C to 125C",
+      "response_time": "8 seconds in still air",
+      "self_heating": "0.5C per mW dissipation",
+      "long_term_drift": "0.2C per year typical"
+    },
+    "known_issues": "Self-heating error increases with excitation current. Accuracy degrades to +/-3C at temperature extremes. Drift can reach 2C after 5 years.",
+    "maintenance": "Annual calibration check. Replace sensor if drift exceeds 5C.",
+    "supplier": "SensorTech Asia",
+    "criticality": "MEDIUM"
+  }
+]

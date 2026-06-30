@@ -1,0 +1,26 @@
+[
+  {
+    "id": "DOC-001",
+    "title": "Thermal Design Guidelines - Industrial Motor Controller",
+    "version": "2.3",
+    "date": "2023-06-15",
+    "content": "The thermal design of the motor controller must ensure all components operate within their rated temperature ranges under worst-case conditions. The ambient operating temperature range is -10C to 55C for standard installations. Critical thermal margins: CPU board junction temperature must not exceed 125C, IGBT junction temperature must not exceed 150C, bulk capacitor case temperature must not exceed 85C. Thermal resistance budget: CPU heatsink must achieve Rth junction-ambient below 15 C/W. Heatsink selection criteria: Use aluminum extrusion heatsink with minimum 200 cm2 surface area for power stages above 500W. Thermal interface material must have conductivity above 4 W/mK and must be replaced every 18 months or after 500 thermal cycles. Airflow design: Minimum airflow of 0.5 m/s required across heatsink at maximum ambient temperature. Fan redundancy is required for systems above 1kW. PWM frequency derating: At ambient temperatures above 45C, reduce PWM switching frequency by 20% to reduce switching losses. Design review note: All new designs must perform thermal simulation including worst-case transient analysis. The 2022 batch of units shipped without transient thermal analysis leading to IGBT failures in units TKT-010 series.",
+    "tags": ["thermal", "design", "IGBT", "heatsink", "CPU", "guidelines"]
+  },
+  {
+    "id": "DOC-002",
+    "title": "Root Cause Analysis Methodology - Field Failure Investigation",
+    "version": "1.5",
+    "date": "2023-09-20",
+    "content": "This document defines the standard methodology for root cause analysis of field failures in industrial systems. Step 1 - Failure Mode Identification: Categorize failure as thermal, electrical, mechanical, firmware, or environmental. Gather all sensor data from the 24 hours preceding failure. Step 2 - Component Analysis: Check BOM specifications against actual operating conditions. Compare failure symptoms against known failure modes in the component database. Step 3 - Design Review: Review thermal design guidelines for thermal failures. Check if operating conditions exceed component derating curves. Review PCB layout for electromagnetic compatibility issues. Step 4 - Historical Pattern Matching: Search ticket database for similar symptoms in past 12 months. Identify recurring failures that may indicate systemic design issues. Step 5 - Fix Validation: Any corrective action must be validated in environmental testing before field deployment. Regression testing must confirm the fix does not introduce new failure modes. Common root causes identified in 2023 field data: 35% thermal management failures, 28% component quality issues, 22% firmware bugs, 15% installation errors. Key insight: 80% of thermal failures could have been predicted by proper thermal simulation during design phase.",
+    "tags": ["RCA", "methodology", "field failure", "investigation", "root cause"]
+  },
+  {
+    "id": "DOC-003",
+    "title": "Self-Healing System Architecture - Engineering Intelligence Platform",
+    "version": "1.0",
+    "date": "2024-01-10",
+    "content": "This document describes the architecture for the autonomous self-healing capability in the EI Platform. The self-healing system operates in four stages: Detection, Diagnosis, Action, and Verification. Detection stage: Isolation Forest anomaly detection model monitors 8 sensor parameters at 1Hz. Alert threshold set at anomaly score below -0.1. Multiple consecutive anomalies required before triggering diagnosis to reduce false positives. Diagnosis stage: MCP agent orchestrates three diagnostic tools in sequence. Ticket Analysis tool searches historical failure database using semantic similarity. BOM Spec Lookup validates operating conditions against component specifications. Design Doc Analysis retrieves relevant design guidelines. Action stage: Based on diagnosis confidence score, system either applies automated fix or escalates to human operator. Automated fixes include: temperature reduction via PWM adjustment, load shedding, fan speed increase. All automated actions are logged with timestamp and rationale. Verification stage: Post-fix sensor monitoring for 60 seconds confirms system stabilization. If anomaly persists, escalate to human operator with full diagnostic report. Design principle: Every automated action must be explainable. The system generates a natural language explanation for every decision including which historical tickets and design documents informed the decision.",
+    "tags": ["self-healing", "architecture", "MCP", "autonomous", "AI", "detection"]
+  }
+]
